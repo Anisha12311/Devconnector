@@ -7,10 +7,11 @@ module.exports = function(req,res,next) {
         res.status(401).json("No token, authorization denied")
     }
     try {
-        console.log("tetst")
+       
         const decode = jwt.verify(token,config.get('jwtSecret'))
         req.user = decode.user
         next()
+        
     } catch (error) {
         res.status(401).json("Token is not vaild")
     }
